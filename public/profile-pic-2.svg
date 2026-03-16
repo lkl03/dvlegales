@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1100" viewBox="0 0 900 1100" fill="none">
+  <rect width="900" height="1100" fill="#ECE8F2"/>
+  <rect x="42" y="42" width="816" height="1016" stroke="#2F263D" stroke-opacity="0.16"/>
+  <circle cx="450" cy="410" r="150" fill="#D9D2E2"/>
+  <path d="M220 860C220 715.42 337.42 598 482 598H418C562.58 598 680 715.42 680 860V912H220V860Z" fill="#D9D2E2"/>
+  <text x="140" y="1000" fill="#2F263D" font-family="Arial, Helvetica, sans-serif" font-size="34">profile-pic-2</text>
+  <text x="140" y="1044" fill="#6B6475" font-family="Arial, Helvetica, sans-serif" font-size="24">Reemplazar por foto real</text>
+</svg>
