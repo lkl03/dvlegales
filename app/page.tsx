@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ArrowUp, ChevronDown, Mail, Phone } from 'lucide-react';
+import { ArrowUp, ChevronDown, Mail, MapPin, Phone } from 'lucide-react';
 import { ContactForm } from '@/components/contact-form';
 import { HeroTypingTitle } from '@/components/hero-typing-title';
 import { Reveal } from '@/components/reveal';
@@ -114,7 +114,9 @@ const team = [
     phoneHref: 'https://wa.me/5491151175372',
     linkedinLabel: 'María Soledad Del Valle',
     linkedinHref: 'https://www.linkedin.com/in/mar%C3%ADa-soledad-del-valle-bb1151200/',
-    license: 'Matrícula profesional: a incorporar'
+    license: `Tº141 Fº822 C.P.A.C.F.
+Tº137 Fº17 C.F.A.S.M.
+Tº24 Fº435 C.A.S.M.`
   },
   {
     position: 'Dr.',
@@ -126,11 +128,21 @@ const team = [
     phoneHref: 'https://wa.me/5491154189477',
     linkedinLabel: 'Maximiliano Minini',
     linkedinHref: 'https://www.linkedin.com/in/maximiliano-minini-68580622a/',
-    license: 'Matrícula profesional: a incorporar'
+    license: `Tº23 Fº455 C.A.S.M.
+Tº141 Fº750 C.P.A.C.F.`
   }
 ] as const;
 
 const year = new Date().getFullYear();
+
+const officeAddress =
+  'Curapaligüe 1942, B1678HJP Caseros, Provincia de Buenos Aires';
+
+const mapsEmbedSrc =
+  'https://www.google.com/maps?q=Curapalig%C3%BCe%201942%2C%20B1678HJP%20Caseros%2C%20Provincia%20de%20Buenos%20Aires&z=16&output=embed';
+
+const mapsDirectionsHref =
+  'https://www.google.com/maps/search/?api=1&query=Curapalig%C3%BCe%201942%2C%20B1678HJP%20Caseros%2C%20Provincia%20de%20Buenos%20Aires';
 
 export default function HomePage() {
   return (
@@ -209,7 +221,7 @@ export default function HomePage() {
             <img
               src="/logo-dv-legales-alt.png"
               alt="DV Legales"
-              className="mx-auto h-14 w-auto object-contain sm:h-16"
+              className="mx-auto h-8 w-auto object-contain sm:h-10"
             />
             <h2 className="section-title mx-auto mt-4 text-center">
               Un estudio que combina respaldo técnico, cercanía y estrategia.
@@ -276,7 +288,7 @@ export default function HomePage() {
         <div className="container-shell">
           <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
             <Reveal className="max-w-3xl" y={20} duration={0.62}>
-              <p className="section-eyebrow">Equipo</p>
+              <p className="section-eyebrow">Nuestros Profesionales</p>
               <h2 className="section-title mt-4">
                 Un equipo profesional que acompaña con criterio, experiencia y
                 cercanía.
@@ -317,7 +329,7 @@ export default function HomePage() {
                   <img
                     src={member.image}
                     alt={member.name}
-                    className="h-70 w-full object-cover object-top sm:h-135"
+                    className="h-70 w-full object-cover object-top sm:h-100"
                   />
 
                   <div className="grid gap-px border-t border-border bg-border sm:grid-cols-2">
@@ -363,7 +375,12 @@ export default function HomePage() {
                         Matrícula
                       </span>
                       <span className="mt-2 block text-base font-medium text-foreground">
-                        {member.license}
+                        {member.license.split('\n').map((line, lineIndex, arr) => (
+                          <span key={lineIndex}>
+                            {line}
+                            {lineIndex < arr.length - 1 ? <br /> : null}
+                          </span>
+                        ))}
                       </span>
                     </div>
                   </div>
@@ -374,78 +391,108 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="contacto" className="scroll-mt-28 bg-white py-16 sm:py-24">
-        <div className="container-shell grid gap-8 xl:grid-cols-[0.84fr_1.16fr]">
-          <Reveal y={20} duration={0.6}>
-            <div className="rounded-[20px] border border-border bg-[linear-gradient(180deg,#f7f4f3_0%,#ffffff_100%)] p-8 sm:p-10">
-                    <p className="text-xs uppercase tracking-[0.28em] text-accent/60">
-                      Contacto
-                    </p>
-              <h2 className="mt-4 text-3xl font-medium tracking-tight text-foreground sm:text-4xl">
-                Asesoramiento legal para tus necesidades jurídicas.
-              </h2>
-              <p className="mt-5 text-base leading-8 text-muted sm:text-lg">
-                Podés escribirnos para contarnos tu situación. Te acompañamos con
-                una primera orientación clara y el próximo paso adecuado para tu
-                caso.
-              </p>
+<section id="contacto" className="scroll-mt-28 bg-white py-16 sm:py-24">
+  <div className="container-shell grid gap-8 xl:grid-cols-[0.84fr_1.16fr] xl:items-start">
+    <Reveal y={20} duration={0.6}>
+      <div className="overflow-hidden rounded-[20px] border border-border bg-[linear-gradient(180deg,#f7f4f3_0%,#ffffff_100%)] shadow-[0_18px_40px_rgba(47,38,61,0.05)]">
+        <div className="border-b border-border p-8 sm:p-10">
+          <p className="text-xs uppercase tracking-[0.28em] text-accent/60">
+            Contacto
+          </p>
+          <h2 className="mt-4 text-3xl font-medium tracking-tight text-foreground sm:text-4xl">
+            Asesoramiento legal para tus necesidades jurídicas.
+          </h2>
+          <p className="mt-5 text-base leading-8 text-muted">
+            Podés escribirnos para contarnos tu situación. Te acompañamos con
+            una primera orientación clara y el próximo paso adecuado para tu
+            caso.
+          </p>
 
-              <div className="mt-8 grid gap-px overflow-hidden rounded-[16px] border border-border bg-border text-sm">
-                <a
-                  href="https://wa.me/5491151175372"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex items-start gap-3 bg-white p-5 transition-colors hover:bg-[#f7f4f3]"
-                >
-                  <Phone className="mt-0.5 h-5 w-5 shrink-0 text-accent" />
-                  <span>
-                    <span className="block text-xs uppercase tracking-[0.24em] text-accent/60">
-                      WhatsApp
-                    </span>
-                    <span className="mt-1 block text-base font-medium text-foreground">
-                      +54 9 11 5117 5372
-                    </span>
-                  </span>
-                </a>
+          <div className="mt-8 grid gap-px overflow-hidden rounded-[16px] border border-border bg-border text-sm">
+            <a
+              href="https://wa.me/5491151175372"
+              target="_blank"
+              rel="noreferrer"
+              className="flex items-start gap-3 bg-white p-5 transition-colors hover:bg-[#f7f4f3]"
+            >
+              <Phone className="mt-0.5 h-5 w-5 shrink-0 text-accent" />
+              <span>
+                <span className="block text-xs uppercase tracking-[0.24em] text-accent/60">
+                  WhatsApp
+                </span>
+                <span className="mt-1 block text-base font-medium text-foreground">
+                  +54 9 11 5117 5372
+                </span>
+              </span>
+            </a>
 
-                <a
-                  href="mailto:dvlegales@gmail.com"
-                  className="flex items-start gap-3 bg-white p-5 transition-colors hover:bg-[#f7f4f3]"
-                >
-                  <Mail className="mt-0.5 h-5 w-5 shrink-0 text-accent" />
-                  <span>
-                    <span className="block text-xs uppercase tracking-[0.24em] text-accent/60">
-                      Email
-                    </span>
-                    <span className="mt-1 block text-base font-medium text-foreground">
-                      dvlegales@gmail.com
-                    </span>
-                  </span>
-                </a>
-              </div>
-            </div>
-          </Reveal>
+            <a
+              href="mailto:dvlegales@gmail.com"
+              className="flex items-start gap-3 bg-white p-5 transition-colors hover:bg-[#f7f4f3]"
+            >
+              <Mail className="mt-0.5 h-5 w-5 shrink-0 text-accent" />
+              <span>
+                <span className="block text-xs uppercase tracking-[0.24em] text-accent/60">
+                  Email
+                </span>
+                <span className="mt-1 block text-base font-medium text-foreground">
+                  dvlegales@gmail.com
+                </span>
+              </span>
+            </a>
 
-          <Reveal delay={0.05} y={18} duration={0.56}>
-            <div className="rounded-[20px] border border-border bg-white p-8 shadow-[0_18px_40px_rgba(47,38,61,0.05)] sm:p-10">
-              <div className="mb-8 max-w-2xl">
-                    <p className="text-xs uppercase tracking-[0.28em] text-accent/60">
-                      Escribinos
-                    </p>
-                <h3 className="mt-3 text-2xl font-medium tracking-tight text-foreground sm:text-3xl">
-                  Dejanos tu mensaje.
-                </h3>
-                <p className="mt-3 text-base leading-8 text-muted">
-                  Estamos para ayudarte con soluciones claras y acompañamiento
-                  integral.
-                </p>
-              </div>
-
-              <ContactForm />
-            </div>
-          </Reveal>
+            <a
+              href={mapsDirectionsHref}
+              target="_blank"
+              rel="noreferrer"
+              className="flex items-start gap-3 bg-white p-5 transition-colors hover:bg-[#f7f4f3]"
+            >
+              <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-accent" />
+              <span>
+                <span className="block text-xs uppercase tracking-[0.24em] text-accent/60">
+                  Ubicación
+                </span>
+                <span className="mt-1 block text-base font-medium leading-7 text-foreground">
+                  {officeAddress}
+                </span>
+              </span>
+            </a>
+          </div>
         </div>
-      </section>
+
+        <div className="relative min-h-70 sm:min-h-80 lg:min-h-90">
+          <iframe
+            title="Ubicación DV Legales en Google Maps"
+            src={mapsEmbedSrc}
+            className="absolute inset-0 h-full w-full border-0"
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            allowFullScreen
+          />
+        </div>
+      </div>
+    </Reveal>
+
+    <Reveal delay={0.05} y={18} duration={0.56}>
+      <div className="rounded-[20px] border border-border bg-white p-8 shadow-[0_18px_40px_rgba(47,38,61,0.05)] sm:p-10">
+        <div className="mb-8 max-w-2xl">
+          <p className="text-xs uppercase tracking-[0.28em] text-accent/60">
+            Escribinos
+          </p>
+          <h3 className="mt-3 text-2xl font-medium tracking-tight text-foreground sm:text-3xl">
+            Dejanos tu mensaje.
+          </h3>
+          <p className="mt-3 text-base leading-8 text-muted">
+            Estamos para ayudarte con soluciones claras y acompañamiento
+            integral.
+          </p>
+        </div>
+
+        <ContactForm />
+      </div>
+    </Reveal>
+  </div>
+</section>
 
       <footer className="border-t border-border bg-white">
         <div className="container-shell grid gap-8 py-12 lg:grid-cols-[1fr_auto_1fr] lg:items-start">
