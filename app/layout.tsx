@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { JsonLd } from '@/components/json-ld';
+import { Analytics } from '@vercel/analytics/next';
 
 const siteUrl = 'https://dvlegales.com.ar';
 const siteName = 'DV Legales';
@@ -95,6 +96,7 @@ export default function RootLayout({
       <body>
         <JsonLd />
         {children}
+        <Analytics />
       </body>
     </html>
   );
