@@ -1,10 +1,19 @@
 import Link from 'next/link';
-import { ArrowUp, ChevronDown, Mail, MapPin, Phone } from 'lucide-react';
+import {
+  ArrowUp,
+  ChevronDown,
+  Mail,
+  MapPin,
+  Phone,
+  ArrowUpRight,
+  Instagram
+} from 'lucide-react';
 import { ContactForm } from '@/components/contact-form';
 import { HeroTypingTitle } from '@/components/hero-typing-title';
 import { Reveal } from '@/components/reveal';
 import { ServicesShowcase } from '@/components/services-showcase';
 import { SiteHeader } from '@/components/site-header';
+import { ScrollToTopButton } from '@/components/scroll-to-top-button';
 
 const navItems = [
   { href: '#inicio', label: 'Inicio' },
@@ -71,7 +80,8 @@ const services = [
   },
   {
     name: 'Derecho Penal',
-    summary: 'Defensa legal en procesos penales con respuesta ágil ante situaciones urgentes.',
+    summary:
+      'Defensa legal en procesos penales con respuesta ágil ante situaciones urgentes.',
     detail:
       'El estudio interviene con rapidez y reserva profesional en procesos penales de diversa complejidad, construyendo una estrategia de defensa desde el primer momento y acompañando cada instancia con seguimiento activo.',
     bullets: [
@@ -113,7 +123,8 @@ const team = [
     phoneLabel: '+54 9 11 5117 5372',
     phoneHref: 'https://wa.me/5491151175372',
     linkedinLabel: 'María Soledad Del Valle',
-    linkedinHref: 'https://www.linkedin.com/in/mar%C3%ADa-soledad-del-valle-bb1151200/',
+    linkedinHref:
+      'https://www.linkedin.com/in/mar%C3%ADa-soledad-del-valle-bb1151200/',
     license: `Tº141 Fº822 C.P.A.C.F.
 Tº137 Fº17 C.F.A.S.M.
 Tº24 Fº435 C.A.S.M.`
@@ -144,7 +155,15 @@ const mapsEmbedSrc =
 const mapsDirectionsHref =
   'https://www.google.com/maps/search/?api=1&query=Curapalig%C3%BCe%201942%2C%20B1678HJP%20Caseros%2C%20Provincia%20de%20Buenos%20Aires';
 
+const instagramHref = 'https://www.instagram.com/dvlegales_/' as const;
+const instagramHandle = '@dvlegales_' as const;
+
 export default function HomePage() {
+
+  function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
   return (
     <main className="bg-background text-foreground">
       <SiteHeader navItems={navItems} />
@@ -365,9 +384,10 @@ export default function HomePage() {
                         href={member.linkedinHref}
                         target="_blank"
                         rel="noreferrer"
-                        className="mt-2 block break-words text-base font-medium text-foreground transition-colors hover:text-accent"
+                        className="mt-2 inline-flex max-w-full items-center gap-1.5 text-base font-medium text-foreground transition-colors hover:text-accent"
                       >
-                        {member.linkedinLabel}
+                        <span className="break-words">{member.linkedinLabel}</span>
+                        <ArrowUpRight className="h-4 w-4 shrink-0" />
                       </a>
                     </div>
                     <div className="bg-white p-5">
@@ -391,108 +411,147 @@ export default function HomePage() {
         </div>
       </section>
 
-<section id="contacto" className="scroll-mt-28 bg-white py-16 sm:py-24">
-  <div className="container-shell grid gap-8 xl:grid-cols-[0.84fr_1.16fr] xl:items-start">
-    <Reveal y={20} duration={0.6}>
-      <div className="overflow-hidden rounded-[20px] border border-border bg-[linear-gradient(180deg,#f7f4f3_0%,#ffffff_100%)] shadow-[0_18px_40px_rgba(47,38,61,0.05)]">
-        <div className="border-b border-border p-8 sm:p-10">
-          <p className="text-xs uppercase tracking-[0.28em] text-accent/60">
-            Contacto
-          </p>
-          <h2 className="mt-4 text-3xl font-medium tracking-tight text-foreground sm:text-4xl">
-            Asesoramiento legal para tus necesidades jurídicas.
-          </h2>
-          <p className="mt-5 text-base leading-8 text-muted">
-            Podés escribirnos para contarnos tu situación. Te acompañamos con
-            una primera orientación clara y el próximo paso adecuado para tu
-            caso.
-          </p>
+      <section id="contacto" className="scroll-mt-28 bg-white py-16 sm:py-24">
+        <div className="container-shell grid gap-8 xl:grid-cols-[0.84fr_1.16fr] xl:items-start">
+          <Reveal y={20} duration={0.6}>
+            <div className="overflow-hidden rounded-[20px] border border-border bg-[linear-gradient(180deg,#f7f4f3_0%,#ffffff_100%)] shadow-[0_18px_40px_rgba(47,38,61,0.05)]">
+              <div className="border-b border-border p-8 sm:p-10">
+                <p className="text-xs uppercase tracking-[0.28em] text-accent/60">
+                  Contacto
+                </p>
+                <h2 className="mt-4 text-3xl font-medium tracking-tight text-foreground sm:text-4xl">
+                  Asesoramiento legal para tus necesidades jurídicas.
+                </h2>
+                <p className="mt-5 text-base leading-8 text-muted">
+                  Podés escribirnos para contarnos tu situación. Te acompañamos con
+                  una primera orientación clara y el próximo paso adecuado para tu
+                  caso.
+                </p>
 
-          <div className="mt-8 grid gap-px overflow-hidden rounded-[16px] border border-border bg-border text-sm">
-            <a
-              href="https://wa.me/5491151175372"
-              target="_blank"
-              rel="noreferrer"
-              className="flex items-start gap-3 bg-white p-5 transition-colors hover:bg-[#f7f4f3]"
-            >
-              <Phone className="mt-0.5 h-5 w-5 shrink-0 text-accent" />
-              <span>
-                <span className="block text-xs uppercase tracking-[0.24em] text-accent/60">
-                  WhatsApp
-                </span>
-                <span className="mt-1 block text-base font-medium text-foreground">
-                  +54 9 11 5117 5372
-                </span>
-              </span>
-            </a>
+                <div className="mt-8 grid gap-px overflow-hidden rounded-[16px] border border-border bg-border text-sm">
+                  <a
+                    href="https://wa.me/5491151175372"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex items-start gap-3 bg-white p-5 transition-colors hover:bg-[#f7f4f3]"
+                  >
+                    <Phone className="mt-0.5 h-5 w-5 shrink-0 text-accent" />
+                    <span>
+                      <span className="block text-xs uppercase tracking-[0.24em] text-accent/60">
+                        WhatsApp
+                      </span>
+                      <span className="mt-1 block text-base font-medium text-foreground">
+                        +54 9 11 5117 5372
+                      </span>
+                    </span>
+                  </a>
 
-            <a
-              href="mailto:dvlegales@gmail.com"
-              className="flex items-start gap-3 bg-white p-5 transition-colors hover:bg-[#f7f4f3]"
-            >
-              <Mail className="mt-0.5 h-5 w-5 shrink-0 text-accent" />
-              <span>
-                <span className="block text-xs uppercase tracking-[0.24em] text-accent/60">
-                  Email
-                </span>
-                <span className="mt-1 block text-base font-medium text-foreground">
-                  dvlegales@gmail.com
-                </span>
-              </span>
-            </a>
+                  <a
+                    href="mailto:dvlegales@gmail.com"
+                    className="flex items-start gap-3 bg-white p-5 transition-colors hover:bg-[#f7f4f3]"
+                  >
+                    <Mail className="mt-0.5 h-5 w-5 shrink-0 text-accent" />
+                    <span>
+                      <span className="block text-xs uppercase tracking-[0.24em] text-accent/60">
+                        Email
+                      </span>
+                      <span className="mt-1 block text-base font-medium text-foreground">
+                        dvlegales@gmail.com
+                      </span>
+                    </span>
+                  </a>
 
-            <a
-              href={mapsDirectionsHref}
-              target="_blank"
-              rel="noreferrer"
-              className="flex items-start gap-3 bg-white p-5 transition-colors hover:bg-[#f7f4f3]"
-            >
-              <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-accent" />
-              <span>
-                <span className="block text-xs uppercase tracking-[0.24em] text-accent/60">
-                  Ubicación
-                </span>
-                <span className="mt-1 block text-base font-medium leading-7 text-foreground">
-                  {officeAddress}
-                </span>
-              </span>
-            </a>
+                  <a
+                    href={mapsDirectionsHref}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex items-start gap-3 bg-white p-5 transition-colors hover:bg-[#f7f4f3]"
+                  >
+                    <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-accent" />
+                    <span>
+                      <span className="block text-xs uppercase tracking-[0.24em] text-accent/60">
+                        Ubicación
+                      </span>
+                      <span className="mt-1 block text-base font-medium leading-7 text-foreground">
+                        {officeAddress}
+                      </span>
+                    </span>
+                  </a>
+                </div>
+              </div>
+
+              <div className="relative min-h-70 sm:min-h-80 lg:min-h-90">
+                <iframe
+                  title="Ubicación DV Legales en Google Maps"
+                  src={mapsEmbedSrc}
+                  className="absolute inset-0 h-full w-full border-0"
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  allowFullScreen
+                />
+              </div>
+            </div>
+          </Reveal>
+
+          <div className="grid gap-6">
+            <Reveal delay={0.05} y={18} duration={0.56}>
+              <div className="rounded-[20px] border border-border bg-white p-8 shadow-[0_18px_40px_rgba(47,38,61,0.05)] sm:p-10">
+                <div className="mb-8 max-w-2xl">
+                  <p className="text-xs uppercase tracking-[0.28em] text-accent/60">
+                    Escribinos
+                  </p>
+                  <h3 className="mt-3 text-2xl font-medium tracking-tight text-foreground sm:text-3xl">
+                    Dejanos tu mensaje.
+                  </h3>
+                  <p className="mt-3 text-base leading-8 text-muted">
+                    Estamos para ayudarte con soluciones claras y acompañamiento
+                    integral.
+                  </p>
+                </div>
+
+                <ContactForm />
+              </div>
+            </Reveal>
+
+            <Reveal delay={0.08} y={16} duration={0.52}>
+              <div className="rounded-[20px] border border-border bg-[linear-gradient(180deg,#f7f4f3_0%,#ffffff_100%)] p-6 shadow-[0_18px_40px_rgba(47,38,61,0.05)] sm:p-7">
+                <div className="flex items-start gap-4">
+                  <div className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-border bg-white text-accent">
+                    <Instagram className="h-5 w-5" />
+                  </div>
+
+                  <div className="min-w-0 flex-1">
+                    <p className="text-xs uppercase tracking-[0.28em] text-accent/60">
+                      Nuestro Instagram
+                    </p>
+                    <div className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1">
+                      <h3 className="text-lg font-medium text-foreground">
+                        DV Legales
+                      </h3>
+                      <span className="text-sm text-muted">{instagramHandle}</span>
+                    </div>
+                    <p className="mt-2 text-sm leading-7 text-muted sm:text-base">
+                      Seguinos para ver novedades y contenido vinculado al ámbito jurídico.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="mt-5 flex flex-col gap-3 sm:flex-row">
+                  <a
+                    href={instagramHref}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="btn-accent-fill inline-flex items-center justify-center gap-2"
+                  >
+                    Seguinos
+                    <ArrowUpRight className="h-4 w-4" />
+                  </a>
+                </div>
+              </div>
+            </Reveal>
           </div>
         </div>
-
-        <div className="relative min-h-70 sm:min-h-80 lg:min-h-90">
-          <iframe
-            title="Ubicación DV Legales en Google Maps"
-            src={mapsEmbedSrc}
-            className="absolute inset-0 h-full w-full border-0"
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-            allowFullScreen
-          />
-        </div>
-      </div>
-    </Reveal>
-
-    <Reveal delay={0.05} y={18} duration={0.56}>
-      <div className="rounded-[20px] border border-border bg-white p-8 shadow-[0_18px_40px_rgba(47,38,61,0.05)] sm:p-10">
-        <div className="mb-8 max-w-2xl">
-          <p className="text-xs uppercase tracking-[0.28em] text-accent/60">
-            Escribinos
-          </p>
-          <h3 className="mt-3 text-2xl font-medium tracking-tight text-foreground sm:text-3xl">
-            Dejanos tu mensaje.
-          </h3>
-          <p className="mt-3 text-base leading-8 text-muted">
-            Estamos para ayudarte con soluciones claras y acompañamiento
-            integral.
-          </p>
-        </div>
-
-        <ContactForm />
-      </div>
-    </Reveal>
-  </div>
-</section>
+      </section>
 
       <footer className="border-t border-border bg-white">
         <div className="container-shell grid gap-8 py-12 lg:grid-cols-[1fr_auto_1fr] lg:items-start">
@@ -536,18 +595,21 @@ export default function HomePage() {
               >
                 +54 9 11 5418 9477
               </a>
+              <a
+                href={instagramHref}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center justify-center gap-1.5 transition-colors hover:text-accent"
+              >
+                <span>Instagram {instagramHandle}</span>
+                <ArrowUpRight className="h-4 w-4 shrink-0" />
+              </a>
             </div>
           </Reveal>
 
           <Reveal delay={0.08} y={16} duration={0.5}>
             <div className="flex justify-center sm:justify-end">
-              <Link
-                href="#inicio"
-                className="btn-accent-outline inline-flex items-center gap-2"
-              >
-                <ArrowUp className="h-4 w-4" />
-                Volver arriba
-              </Link>
+              <ScrollToTopButton />
             </div>
           </Reveal>
         </div>

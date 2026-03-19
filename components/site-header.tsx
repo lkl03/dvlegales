@@ -62,7 +62,7 @@ export function SiteHeader({ navItems }: { navItems: readonly NavItem[] }) {
           >
             <WhatsAppIcon />
             <span className="hidden sm:inline">Solicitar consulta</span>
-            <span className="sm:hidden text-xs">Contactanos</span>
+            <span className="sm:hidden text-xs">Escribinos</span>
           </a>
 
           <button
